@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>BookARoom</title>
     </h:head>
@@ -21,9 +23,9 @@
                 <h:outputText value="Credit card number"/>
                 <h:outputText value="****************"/>
                 <h:outputText value="Credit card number expiration date"/>
-                <h:outputText value="#{loginBean.currentUser.CCexpirationdate.month}/#{loginBean.currentUser.CCexpirationdate.year}"/>
-                
-                
+                <h:outputText value="#{loginBean.currentUser.ccexpirationdate}">
+                    <f:convertDateTime pattern="MM/yy" />
+                </h:outputText>
                 <br/>
                 <h:commandButton value="Change user information" action="ChangeInfo.xhtml?faces-redirect=true"/>
                 <br/>
