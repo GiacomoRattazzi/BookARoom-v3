@@ -84,6 +84,10 @@ public class Users implements Serializable {
 
     public Users() {
     }
+    
+    public boolean isPasswordCorrect(String password) {
+        return password.hashCode() == this.password;
+    }
 
     public Users(Integer userId) {
         this.userId = userId;
