@@ -7,20 +7,6 @@
 
 
 
-<!--    <script type="text/javascript">
-        //<![CDATA[
-        function highlightDays(date) {
-            var dates = "#{roomBean.bookedDatesString}";
-            var cssclass = '';
-            for (var i = 0; i < dates.length; i++) {
-                if (date === new Date(dates[i])) {
-                   cssclass = 'mycss';
-                }
-            }
-            return [true, cssclass];
-        }
-        //]]>
-    </script>-->
     <h:head>
         <title>Booking a room</title>
     </h:head>
@@ -38,7 +24,7 @@
             <h:outputText value="You are booking:"/>
             <h:outputText value="#{roomBean.roomName}"/>
             <h:outputText value="This room is not available at the following dates:"/>
-            <h:outputText value="#{roomBean.bookedDates.get(roomBean.roomName)}"/>
+            <h:outputText value="#{roomBean.bookedDates}"/>
 
         </h:panelGrid>
         <p:commandButton value="Confirm booking" update="msgs" action="#{roomBean.finish}" icon="pi pi-check" />

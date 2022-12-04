@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-  <persistence-unit name="my_persistence_unit" transaction-type="JTA">>
+  <persistence-unit name="my_persistence_unit" transaction-type="JTA">&gt;
     <jta-data-source>jdbc/soarJNDI</jta-data-source>
     <class>bookaroom.v3.models.Reservations</class>
     <class>bookaroom.v3.models.Users</class>
     <class>bookaroom.v3.models.Rooms</class>
     <class>bookaroom.v3.models.Comments</class>
-	<exclude-unlisted-classes>false</exclude-unlisted-classes>
+	<class>bookaroom.v3.models.Dates</class><exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

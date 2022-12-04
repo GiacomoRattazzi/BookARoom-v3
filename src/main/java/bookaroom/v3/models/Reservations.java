@@ -6,8 +6,8 @@
 package bookaroom.v3.models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,8 +56,8 @@ public class Reservations implements Serializable {
     @Column(name = "DATES_RANGE")
     @Temporal(TemporalType.DATE)
     private Date datesRange;
-    @ManyToMany(mappedBy = "reservationsCollection")
-    private Collection<Users> usersCollection;
+    @ManyToMany(mappedBy = "reservationsList")
+    private List<Users> usersList;
 
     public Reservations() {
     }
@@ -107,12 +107,12 @@ public class Reservations implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Users> getUsersCollection() {
-        return usersCollection;
+    public List<Users> getUsersList() {
+        return usersList;
     }
 
-    public void setUsersCollection(Collection<Users> usersCollection) {
-        this.usersCollection = usersCollection;
+    public void setUsersList(List<Users> usersList) {
+        this.usersList = usersList;
     }
 
     @Override

@@ -14,12 +14,12 @@
             </br>
             <p:accordionPanel value="#{roomBean.rooms}" var="room" widgetVar="ondemand" onTabChange="">
                 
-                <p:tab title="#{room.name}" >
+                <p:tab title="#{room.roomName}" >
 
                     <h:panelGrid columns="1" cellpadding="10">
-                        <p:graphicImage name="/images/#{room.name}"/> 
-                        <img src="../images/#{room.name}.jpeg" width="500" alt="Picture :#{room.name}"/>
-                        <h:outputText value="Price per night : #{room.price} CHF"/>
+                        <p:graphicImage name="/images/#{room.roomName}"/> 
+                        <img src="../images/#{room.roomName}.jpeg" width="500" alt="Picture :#{room.roomName}"/>
+                        <h:outputText value="Price per night : #{room.roomPrice} CHF"/>
                         <h:outputText value="Description : #{room.description}"/>
                     </h:panelGrid>
                   
@@ -29,8 +29,8 @@
             <p:selectOneListbox id="roomBook" value="#{roomBean.roomName}" >
                     <f:ajax/>
                     <f:selectItems value="#{roomBean.rooms}" var="room" 
-                                   itemLabel="#{room.name}" 
-                                   itemValue="#{room.name}" />
+                                   itemLabel="#{room.roomName}" 
+                                   itemValue="#{room.roomName}" />
             </p:selectOneListbox>
             
             <p:commandButton value="Book this room" action="/UserPage/Booking.xhtml?faces-redirect=true"/>         

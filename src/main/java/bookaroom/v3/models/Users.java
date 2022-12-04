@@ -6,8 +6,8 @@
 package bookaroom.v3.models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,7 +80,7 @@ public class Users implements Serializable {
         @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "RESERVATION_ID", referencedColumnName = "RESERVATION_ID")})
     @ManyToMany
-    private Collection<Reservations> reservationsCollection;
+    private List<Reservations> reservationsList;
 
     public Users() {
     }
@@ -166,12 +166,12 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Reservations> getReservationsCollection() {
-        return reservationsCollection;
+    public List<Reservations> getReservationsList() {
+        return reservationsList;
     }
 
-    public void setReservationsCollection(Collection<Reservations> reservationsCollection) {
-        this.reservationsCollection = reservationsCollection;
+    public void setReservationsList(List<Reservations> reservationsList) {
+        this.reservationsList = reservationsList;
     }
 
     @Override
