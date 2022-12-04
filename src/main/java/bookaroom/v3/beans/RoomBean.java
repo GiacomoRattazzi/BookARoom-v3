@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.primefaces.PrimeFaces;
+import org.w3c.dom.ranges.Range;
 
 /*
  * @author Team BookARoom
@@ -53,11 +54,14 @@ public class RoomBean implements Serializable {
         return new ArrayList<>(query.getResultList());
     }
     
-    public List<Dates> getBookedDates() {
+    public ArrayList<String> getBookedDates() {
         Query query = em.createNamedQuery("Dates.findByRoomName");
         List<Dates> dates = query.setParameter("roomName", roomName).getResultList();
-        List<String> n;
-        return dates;
+        ArrayList<String> n = new ArrayList<>();
+        for (int i = 0; i < dates.size(); i++ )  {
+            n.add(dates.get(i).getRoomDate()); 
+        }
+        return n;   
     }
     
     private Rooms findRoomByNameInTheHotel(String roomName) throws DoesNotExistException {
@@ -119,13 +123,19 @@ public class RoomBean implements Serializable {
      
     public void dateFor() {
         roomEmpty = true;
-        Query query = em.createNamedQuery("Dates.findByRoomName");
-        List<Dates> dates = query.setParameter("roomName", roomName).getResultList();
-        if (dates.size() > 0) {
-            System.out.println(dates);
+        for (LocalDate tempBooked : getDatesBetween()) {
+            test1 = tempBooked;
+            for (String dateBooked : getBookedDates()) {
+                temp2 = dateBooked.toString();
+                if(test1.toString().equals(dateBooked.toString()) == true) {
+                    roomEmpty = false; 
+                    break;
+                }
+            }
+        }
         }
         
-    }
+    
     
     //NEW PRICE
 //    private double findRoomPrice() {
@@ -145,6 +155,23 @@ public class RoomBean implements Serializable {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+    
+    public void finish() {
+        
+        dateFor(); 
+        if (roomEmpty==false) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This date is already booked: " + temp2 ));
+        }else{
+            
+            //addDatesBooked();
+            resNbr += 1;
+            //addResToRes();
+            
+            PrimeFaces.current().ajax().update("form:display");
+            PrimeFaces.current().executeScript("PF('dlg').show()");
+            
+        }
+        }
     
 
     
