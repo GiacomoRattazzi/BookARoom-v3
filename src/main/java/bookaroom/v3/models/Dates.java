@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Dates.findByDateId", query = "SELECT d FROM Dates d WHERE d.dateId = :dateId"),
     @NamedQuery(name = "Dates.findByRoomName", query = "SELECT d FROM Dates d WHERE d.roomName = :roomName"),
     @NamedQuery(name = "Dates.findByRoomDate", query = "SELECT d FROM Dates d WHERE d.roomDate = :roomDate")})
+    @NamedQuery(name = "Dates.findByRoomNameAndDate", query = "SELECT d FROM Dates d WHERE d.roomDate = :roomDate AND d.roomName = :roomName")
 public class Dates implements Serializable {
 
     private static final long serialVersionUID = 1L;

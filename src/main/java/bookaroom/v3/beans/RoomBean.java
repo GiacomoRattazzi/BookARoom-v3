@@ -16,6 +16,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.ZoneId;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -47,8 +49,9 @@ public class RoomBean implements Serializable {
     private int resNbr = 0;
     private int RemoveResNbr = 0;
     private String DelRoomName = "";
-    private List<LocalDate> DelDates = null;
-
+    private LocalDate DelArrivalDate;
+    private LocalDate DelDepartureDate;
+    
     public ArrayList<Rooms> getRooms() {
         Query query = em.createNamedQuery("Rooms.findAll");
         return new ArrayList<>(query.getResultList());
@@ -205,6 +208,7 @@ public class RoomBean implements Serializable {
         em.merge(user);
     }
     
+    //add booked dates to database
     @Transactional
     public void addDatesBooked() {
        List<LocalDate> tempdate = getDatesBetween();
@@ -220,12 +224,16 @@ public class RoomBean implements Serializable {
     @Transactional
     public void removeRoomFromReservations() {
         Users user = LoginBean.getUserLoggedIn();
+
         try {
             if (doesResExistInReservations(user,RemoveResNbr)) {
+                deleteDatesBooked();
                 Reservations res = findResByNumberInReservations(user, RemoveResNbr);
                 List uList = user.getReservationsList();
                 uList.remove(res);
                 em.merge(user);
+                
+                
             }
         } catch (DoesNotExistException ex) {
             System.out.println(ex.getMessage());
@@ -249,6 +257,58 @@ public class RoomBean implements Serializable {
         }
         throw new DoesNotExistException("Reservation " + resnbr + " does not exist.");
     }
+    
+    private String findRoomNameByNumberInReservations(Users user, int resnbr) {
+        for (Reservations res : user.getReservationsList()) {
+            if (res.getReservationNumber() == resnbr) {
+                return res.getRoomName();
+            }
+        }return "null";
+    }
+
+    
+    
+    public void setResDatesByNumberInBooking(Users user, int resnbr) {
+        for (Reservations res : user.getReservationsList()) {
+            if (res.getReservationNumber() == resnbr) {
+                DelArrivalDate = res.getDateArrival().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                DelDepartureDate = res.getDateDeparture().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            }
+        }
+    }
+    
+    private List<LocalDate> getRangeFromReservations(){
+        if(DelArrivalDate == null) {
+            return null;
+        } else {
+            long numOfDaysBetween = ChronoUnit.DAYS.between(DelArrivalDate, DelDepartureDate); 
+            return IntStream.iterate(0, i -> i + 1)
+              .limit(numOfDaysBetween)
+              .mapToObj(i -> DelArrivalDate.plusDays(i))
+              .collect(Collectors.toList());
+                
+        }
+    }
+    
+    @Transactional
+    public void deleteDatesBooked() {
+        Users user = LoginBean.getUserLoggedIn();
+        String delroomName = findRoomNameByNumberInReservations(user, RemoveResNbr);
+        setResDatesByNumberInBooking(user, RemoveResNbr);
+        List<LocalDate> deletingdates = getRangeFromReservations();
+        for (int i = 0; i < deletingdates.size(); i++) {
+            Query query = em.createQuery("DELETE FROM Dates d WHERE d.roomName = :roomName AND d.roomDate = :roomDate");
+            query.setParameter("roomName", delroomName);
+            query.setParameter("roomDate", deletingdates.get(i).toString());
+            query.executeUpdate();
+        }
+    }
+      
+     
+
+
+    
+    
 
     
     
