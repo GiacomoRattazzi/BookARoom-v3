@@ -7,14 +7,12 @@ package bookaroom.v3.models;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +20,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Reservations.findByReservationNumber", query = "SELECT r FROM Reservations r WHERE r.reservationNumber = :reservationNumber"),
     @NamedQuery(name = "Reservations.findByRoomName", query = "SELECT r FROM Reservations r WHERE r.roomName = :roomName"),
     @NamedQuery(name = "Reservations.findByTotalPrice", query = "SELECT r FROM Reservations r WHERE r.totalPrice = :totalPrice"),
-    @NamedQuery(name = "Reservations.findByDatesRange", query = "SELECT r FROM Reservations r WHERE r.datesRange = :datesRange")})
+    @NamedQuery(name = "Reservations.findByDateArrival", query = "SELECT r FROM Reservations r WHERE r.dateArrival = :dateArrival"),
+    @NamedQuery(name = "Reservations.findByDateDeparture", query = "SELECT r FROM Reservations r WHERE r.dateDeparture = :dateDeparture")})
 public class Reservations implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,13 +49,15 @@ public class Reservations implements Serializable {
     @Size(max = 50)
     @Column(name = "ROOM_NAME")
     private String roomName;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TOTAL_PRICE")
-    private Integer totalPrice;
-    @Column(name = "DATES_RANGE")
+    private Double totalPrice;
+    @Column(name = "DATE_ARRIVAL")
     @Temporal(TemporalType.DATE)
-    private Date datesRange;
-    @ManyToMany(mappedBy = "reservationsList")
-    private List<Users> usersList;
+    private Date dateArrival;
+    @Column(name = "DATE_DEPARTURE")
+    @Temporal(TemporalType.DATE)
+    private Date dateDeparture;
 
     public Reservations() {
     }
@@ -90,29 +90,28 @@ public class Reservations implements Serializable {
         this.roomName = roomName;
     }
 
-    public Integer getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public Date getDatesRange() {
-        return datesRange;
+    public Date getDateArrival() {
+        return dateArrival;
     }
 
-    public void setDatesRange(Date datesRange) {
-        this.datesRange = datesRange;
+    public void setDateArrival(Date dateArrival) {
+        this.dateArrival = dateArrival;
     }
 
-    @XmlTransient
-    public List<Users> getUsersList() {
-        return usersList;
+    public Date getDateDeparture() {
+        return dateDeparture;
     }
 
-    public void setUsersList(List<Users> usersList) {
-        this.usersList = usersList;
+    public void setDateDeparture(Date dateDeparture) {
+        this.dateDeparture = dateDeparture;
     }
 
     @Override
