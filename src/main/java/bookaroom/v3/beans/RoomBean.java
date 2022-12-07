@@ -201,8 +201,8 @@ public class RoomBean implements Serializable {
         newReservation.setRoomName(roomName);
         newReservation.setTotalPrice(getTotalPrice());
         newReservation.setReservationNumber(getLatestResNumber()+1);
-        newReservation.setDateArrival(Date.valueOf(range.get(0)));
-        newReservation.setDateDeparture(Date.valueOf(range.get(1)));
+        newReservation.setDateArrival(range.get(0).toString());
+        newReservation.setDateDeparture(range.get(1).toString());
         user.getReservationsList().add(newReservation);
         em.persist(newReservation);
         em.merge(user);
@@ -271,8 +271,8 @@ public class RoomBean implements Serializable {
     public void setResDatesByNumberInBooking(Users user, int resnbr) {
         for (Reservations res : user.getReservationsList()) {
             if (res.getReservationNumber() == resnbr) {
-                DelArrivalDate = res.getDateArrival().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                DelDepartureDate = res.getDateDeparture().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                DelArrivalDate = LocalDate.parse(res.getDateArrival());
+                DelDepartureDate = LocalDate.parse(res.getDateDeparture());
             }
         }
     }

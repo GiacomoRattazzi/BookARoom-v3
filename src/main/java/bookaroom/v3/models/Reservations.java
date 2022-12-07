@@ -6,7 +6,6 @@
 package bookaroom.v3.models;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -52,12 +49,12 @@ public class Reservations implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TOTAL_PRICE")
     private Double totalPrice;
+    @Size(max = 50)
     @Column(name = "DATE_ARRIVAL")
-    @Temporal(TemporalType.DATE)
-    private Date dateArrival;
+    private String dateArrival;
+    @Size(max = 50)
     @Column(name = "DATE_DEPARTURE")
-    @Temporal(TemporalType.DATE)
-    private Date dateDeparture;
+    private String dateDeparture;
 
     public Reservations() {
     }
@@ -98,19 +95,19 @@ public class Reservations implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Date getDateArrival() {
+    public String getDateArrival() {
         return dateArrival;
     }
 
-    public void setDateArrival(Date dateArrival) {
+    public void setDateArrival(String dateArrival) {
         this.dateArrival = dateArrival;
     }
 
-    public Date getDateDeparture() {
+    public String getDateDeparture() {
         return dateDeparture;
     }
 
-    public void setDateDeparture(Date dateDeparture) {
+    public void setDateDeparture(String dateDeparture) {
         this.dateDeparture = dateDeparture;
     }
 
