@@ -1,0 +1,15 @@
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/beans/CommentBean.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/models/Reservations.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/models/Comments.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/exceptions/AlreadyExistsException.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/exceptions/InvalidCreditCardException.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/models/Users.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/exceptions/InvalidCreditCardDateException.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/resources/JavaEE8Resource.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/exceptions/DoesNotExistException.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/resources/JAXRSConfiguration.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/models/Rooms.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/models/Dates.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/beans/LoginBean.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/beans/UserBean.java
+/Users/ahmed/Documents/GitHub/BookARoom-v3/src/main/java/bookaroom/v3/beans/RoomBean.java

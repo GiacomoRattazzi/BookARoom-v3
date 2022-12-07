@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <h:head>
+        <title>BookARoom</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <img src="../images/user.jpeg" width="100" alt="user"/>
+            
+            <h:panelGrid columns="2">
+                
+                <h:outputText value="Username"/>
+                <h:inputText value="#{userBean.username}" />
+                <h:outputText value="First Name"/>
+                <h:inputText value="#{userBean.firstName}" />
+                <h:outputText value="Last Name"/>
+                <h:inputText value="#{userBean.lastName}" />
+                <h:outputText value="Email"/>
+                <h:inputText value="#{userBean.email}" />
+                <h:outputText value="Password"/>
+                <h:inputSecret value="#{userBean.password}" />
+                <h:outputText value="Credit card number (must be 16 digits)"/>
+                <input value="#{userBean.ccnumber}" minlength="16" maxlength="16" size="20" pattern="[0-9]{16}" />
+                <h:outputText value="Credit card code (must be 3 digits)"/>
+                <input value="#{userBean.cccode}" minlength="3" maxlength="3" size="10" pattern="[0-9]{3}" />
+                
+                <h:outputText value="Credit card expiration date"/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:datePicker id="month" view="month" value="#{userBean.ccexpirationdate}" pattern="MM/yy" yearNavigator="true" yearRange="#{roomBean.today}:2030" mindate="#{roomBean.today}" />
+                </h:panelGrid>
+                   
+                <h:commandButton value="Create a User" 
+                                 action="#{userBean.createAUser()}"/>
+                <h:commandButton value="Go Back to Main Menu" 
+                                 action="/MainPage/MainPage.xhtml?faces-redirect=true"/>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                <h:outputText value="*** If page gets stuck please refresh :) ***"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

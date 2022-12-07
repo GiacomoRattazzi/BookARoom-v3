@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hotel Rooms</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Rooms in the Hotel" style="font-size: 30px"/>
+            <br> 
+            <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+            </br>
+            <p:accordionPanel value="#{roomBean.rooms}" var="room" widgetVar="ondemand" onTabChange="">
+                
+                <p:tab title="#{room.roomName}" >
+
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <p:graphicImage name="/images/#{room.roomName}"/> 
+                        <img src="../images/#{room.roomName}.jpeg" width="500" alt="Picture :#{room.roomName}"/>
+                        <h:outputText value="Price per night : #{room.roomPrice} CHF"/>
+                        <h:outputText value="Description : #{room.description}"/>
+                    </h:panelGrid>
+                  
+                </p:tab>
+            </p:accordionPanel>
+
+            <p:selectOneListbox id="roomBook" value="#{roomBean.roomName}" >
+                    <f:ajax/>
+                    <f:selectItems value="#{roomBean.rooms}" var="room" 
+                                   itemLabel="#{room.roomName}" 
+                                   itemValue="#{room.roomName}" />
+            </p:selectOneListbox>
+            
+            <p:commandButton value="Book this room" action="/UserPage/Booking.xhtml?faces-redirect=true"/>         
+           
+            <br>
+            <h:outputText id="result" value="#{roomBean.roomName}" />
+            </br>
+        </h:form>
+    </h:body>
+</html>

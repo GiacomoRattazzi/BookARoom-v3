@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Hotel Rooms</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Rooms in the Hotel" style="font-size: 30px"/>
+            <br/><br></br>
+            <h:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"/>
+            <h:commandButton value="Sign in" action="LoginPage.xhtml?faces-redirect=true"/>
+            <br/><br></br>
+            <p:accordionPanel value="#{roomBean.rooms}" var="room" widgetVar="ondemand" onTabChange="">
+
+                 <p:tab title="#{room.roomName}" >
+
+                     <h:panelGrid columns="1" cellpadding="10">
+                 <p:graphicImage name="/images/#{room.roomName}"/> 
+                 <img src="../images/#{room.roomName}.jpeg" width="500" alt="Picture :#{room.roomName}"/>
+                 <h:outputText value="The Price per night : #{room.roomPrice} CHF"/>
+
+
+                 <h:outputText value="The Description : #{room.description}" />
+                 </h:panelGrid>
+
+             </p:tab>
+             </p:accordionPanel>
+            <br></br>
+            <h:outputText value="Reviews" style="font-size: 30px"/>
+                <br/>
+                <ui:repeat value="#{commentBean.comments}" var="item">
+                    <h:outputText value="-----" />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{item.comment}" />
+                        <p:rating value="#{item.rating}" readonly="true" />
+                    </h:panelGrid>
+                    <h:outputText value="-----" />
+                </ui:repeat>
+                <br/>    
+        </h:form>
+    </h:body>
+</html>
