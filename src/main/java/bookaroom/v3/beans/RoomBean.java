@@ -110,7 +110,12 @@ public class RoomBean implements Serializable {
     }
     
     public LocalDate getToday() {
-        return LocalDate.now();
+        return LocalDate.now(); 
+    }
+    
+    public LocalDate getNextMonth() {
+        LocalDate today = LocalDate.now();
+        return today.plusMonths(1).withDayOfMonth(1);
     }
     
     public List<LocalDate> getDatesBetween() { 

@@ -32,7 +32,7 @@
                 <h:outputText value="Credit card expiration date"/>
                 
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:datePicker id="month" view="month" value="#{userBean.ccexpirationdate}" pattern="MM/yy" yearNavigator="true" yearRange="#{roomBean.today}:2030" mindate="#{roomBean.today}" />
+                    <p:datePicker id="month" view="month" value="#{userBean.ccexpirationdate}" pattern="MM/yy" yearNavigator="true" yearRange="#{roomBean.today}:2030" mindate="#{roomBean.nextMonth}" />
                 </h:panelGrid>
                 <p:growl id="growl" showDetail="false" life="3000"/>
                 <p:commandButton value="Create a User" 
