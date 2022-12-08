@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -80,6 +82,12 @@ public class UserBean implements Serializable {
     @Transactional
     public String modifyAUser() {
         try {
+            if (usernameExists() == true) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This username is not available: " + username));
+            }
+            if (emailExists() == true) {
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This email is already in use: " + email));
+            }
             if (!emailExists() && !usernameExists()) {
                 Users user = LoginBean.getUserLoggedIn();
                 user.setUsername(username);
@@ -89,6 +97,7 @@ public class UserBean implements Serializable {
                 em.merge(user);
                 return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
             }
+
         } catch (AlreadyExistsException | DoesNotExistException ex ) {
             System.out.println(ex.getMessage());
         }
@@ -98,9 +107,9 @@ public class UserBean implements Serializable {
         this.firstName = "";
         this.lastName = "";
         this.password = "";
-        return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
-    }   
-
+        return "";
+    }
+    
     private boolean emailExists() throws AlreadyExistsException {
         Query query = em.createNamedQuery("Users.findByEmail");
         List<Users> users = query.setParameter("email", email).getResultList();
