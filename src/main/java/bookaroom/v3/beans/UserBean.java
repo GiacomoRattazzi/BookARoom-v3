@@ -75,6 +75,30 @@ public class UserBean implements Serializable {
         this.firstName = "";
         this.lastName = "";
         this.password = "";
+    }       
+    
+    @Transactional
+    public String modifyAUser() {
+        try {
+            if (!emailExists() && !usernameExists()) {
+                Users user = LoginBean.getUserLoggedIn();
+                user.setUsername(username);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                em.merge(user);
+                return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
+            }
+        } catch (AlreadyExistsException | DoesNotExistException ex ) {
+            System.out.println(ex.getMessage());
+        }
+        // empty values
+        this.email = "";
+        this.username = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.password = "";
+        return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
     }   
 
     private boolean emailExists() throws AlreadyExistsException {

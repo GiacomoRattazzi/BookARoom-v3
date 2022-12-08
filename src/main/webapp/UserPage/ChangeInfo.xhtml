@@ -9,14 +9,14 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="New username:"/>
-                <h:inputText value="#{loginBean.currentUser.username}"/>
+                <h:inputText value="#{userBean.username}"/>
                 <h:outputText value="New first name:"/>
-                <h:inputText value="#{loginBean.currentUser.firstName}"/>
+                <h:inputText value="#{userBean.firstName}"/>
                 <h:outputText value="New last name"/>
-                <h:inputText value="#{loginBean.currentUser.lastName}"/>
+                <h:inputText value="#{userBean.lastName}"/>
                 <h:outputText value="New email"/>
-                <h:inputText value="#{loginBean.currentUser.email}"/>
-                <h:commandButton value="Save and Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+                <h:inputText value="#{userBean.email}"/>
+                <h:commandButton value="Save and Go Back to Main Menu" action="#{userBean.modifyAUser()}"/>
             </h:panelGrid>
         </h:form>
     </h:body>
