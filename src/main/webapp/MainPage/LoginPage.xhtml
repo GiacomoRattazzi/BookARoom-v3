@@ -6,12 +6,12 @@
         <title>BookARoom</title>
     </h:head>
     <h:body>
-        <h:outputLabel style="font-size: 30px" value="Sign in"/>
+        <h2 style="font-family: 'Helvetica', cursive; color: #3d8bff; font-size: 40px; font-weight: bold; text-align: center;">Welcome to BookARoom!</h2>
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Username"/>
+            <h:panelGrid columns="2" style="margin:0 auto; max-width:300px; background-color: #f2f2f2; padding: 10px; border-radius: 10px;">
+                <h:outputText value="Username 📝" style="text-align: center;"/>
                 <h:inputText value="#{loginBean.username}" />
-                <h:outputText value="Password"/>
+                <h:outputText value="Password 🔑" style="text-align: center;"/>
                 <h:inputSecret value="#{loginBean.password}" />
                 <br/>
                 <h:commandButton value="Login" action="#{loginBean.userLogsIn()}"/>
@@ -19,5 +19,14 @@
                 <h:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"/>
             </h:panelGrid>
         </h:form>
+        <style>
+            h:body {
+                background-image: url("/img/background.gif");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                text-align: center;
+            }
+        </style>
     </h:body>
 </html>

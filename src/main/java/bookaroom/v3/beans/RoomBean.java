@@ -86,6 +86,11 @@ public class RoomBean implements Serializable {
         this.roomName = roomName;
     }
     
+    public String setRoomNameAndRedirect(String roomName) {
+        this.roomName = roomName;
+        return "/UserPage/Booking.xhtml?faces-redirect=true";
+    }
+    
     public void click() {
         if (roomEmpty == false) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This date is already booked: " + temp2 ));

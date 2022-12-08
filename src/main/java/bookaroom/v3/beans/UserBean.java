@@ -40,8 +40,8 @@ public class UserBean implements Serializable {
     private String lastName = "";
     private String email = "";
     private String password = "";
-    private String ccnumber = "";
-    private String cccode = "";
+    private int ccnumber;
+    private int cccode;
     private Date ccexpirationdate = new Date(System.currentTimeMillis());
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
     private final YearMonth CurrentTime = YearMonth.now();
@@ -58,8 +58,8 @@ public class UserBean implements Serializable {
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
                 newUser.setPassword(password.hashCode());
-                newUser.setCcnumber(ccnumber);
-                newUser.setCccode(cccode);
+                newUser.setCcnumber(Integer.toString(ccnumber));
+                newUser.setCccode(Integer.toString(cccode));
                 newUser.setCcexpirationdate(ccexpirationdate);
                 em.persist(newUser);
                 
@@ -108,11 +108,11 @@ public class UserBean implements Serializable {
         return password;
     }
         
-    public String getCcnumber() {
+    public int getCcnumber() {
         return ccnumber;
     }
     
-    public String getCccode() {
+    public int getCccode() {
         return cccode;
     }
     
@@ -157,11 +157,11 @@ public class UserBean implements Serializable {
         this.username = username;
     }
     
-    public void setCcnumber(String nccnumber) {
+    public void setCcnumber(int nccnumber) {
          this.ccnumber = nccnumber;
     }
     
-    public void setCccode(String ncccode) {
+    public void setCccode(int ncccode) {
          this.cccode = ncccode;
     }
     

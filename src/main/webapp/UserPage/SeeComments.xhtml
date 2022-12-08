@@ -6,30 +6,71 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>BookARoom</title>
+        <style>
+          .formWrapper {
+            padding: 2rem;
+            background-color: #ebebeb;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #9b9c9b;
+          }
+          .reviewWrapper {
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            border: 1px solid #a8a8a8;
+            border-radius: 5px;
+            background-color: #fcfcfc;
+          }
+          .reviewWrapper h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+          }
+          .ratingWrapper {
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+
+        .commentStyle {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 15px;
+            border: 1px solid #a8a8a8;
+            border-radius: 5px;
+            background-color: #fcfcfc;
+        }
+        </style>
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Reviews" style="font-size: 30px"/>
-                <br/>
-                <ui:repeat value="#{commentBean.comments}" var="item">
-                    <h:outputText value="-----" />
-                    <h:panelGrid columns="2">
-                        <h:outputText value="#{item.comment}" />
-                        <p:rating value="#{item.rating}" readonly="true" />
-                    </h:panelGrid>
-                    <h:outputText value="-----" />
-                </ui:repeat>
-                <br/>
-                <h:outputText value="New Comment:"/>
-                <h:inputText value="#{commentBean.comment}" />
-                <p:rating value="#{commentBean.rating}" />
-                <br/>
-                <h:commandButton value="Add comment" action="#{commentBean.addCommentFromUser()}"/>
-                <br/>
-                <h:commandButton value="Back" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
-            </h:panelGrid>
+            <div class="formWrapper">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Reviews" style="font-size: 30px"/>
+                    <br/>
+                    <ui:repeat value="#{commentBean.comments}" var="item">
+                        <div class="reviewWrapper">
+                            <h:panelGrid columns="2">
+                                <h3><h:outputText value="#{item.comment}" /></h3>
+                                <br/><br/>
+                                <div class="ratingWrapper">
+                                    <p:rating value="#{item.rating}" readonly="true" stars="5" cancel="false" style="margin-bottom: 10px;" />
+                                </div>
+                            </h:panelGrid>
+                        </div>
+                    </ui:repeat>
+                    <br/>
+                    <h:outputText value="New Comment:"/>
+                    <h:inputText value="#{commentBean.comment}" />
+                    <div class="ratingWrapper">
+                        <p:rating value="#{commentBean.rating}" stars="5" cancel="false"/>
+                    </div>
+                    <br/>
+                    <h:commandButton value="Add comment" action="#{commentBean.addCommentFromUser()}"/>
+                    <br/>
+                    <h:commandButton value="Back" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+                </h:panelGrid>
+            </div>
         </h:form>
     </h:body>
 </html>
-
