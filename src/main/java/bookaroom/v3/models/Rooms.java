@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rooms.findByRoomId", query = "SELECT r FROM Rooms r WHERE r.roomId = :roomId"),
     @NamedQuery(name = "Rooms.findByRoomName", query = "SELECT r FROM Rooms r WHERE r.roomName = :roomName"),
     @NamedQuery(name = "Rooms.findByRoomPrice", query = "SELECT r FROM Rooms r WHERE r.roomPrice = :roomPrice"),
-    @NamedQuery(name = "Rooms.findByDescription", query = "SELECT r FROM Rooms r WHERE r.description = :description")})
+    @NamedQuery(name = "Rooms.findByDescription", query = "SELECT r FROM Rooms r WHERE r.description = :description"),
+    @NamedQuery(name = "Rooms.findByRoomType", query = "SELECT r FROM Rooms r WHERE r.roomType = :roomType")})
 public class Rooms implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,9 @@ public class Rooms implements Serializable {
     @Size(max = 255)
     @Column(name = "DESCRIPTION")
     private String description;
+    @Size(max = 50)
+    @Column(name = "ROOM_TYPE")
+    private String roomType;
 
     public Rooms() {
     }
@@ -88,6 +92,14 @@ public class Rooms implements Serializable {
         this.description = description;
     }
 
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
