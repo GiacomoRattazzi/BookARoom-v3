@@ -18,6 +18,8 @@
                 <h:inputText value="#{userBean.lastName}"/>
                 <h:outputText value="New email"/>
                 <h:inputText value="#{userBean.email}"/>
+                <h:outputText value="New password"/>
+                <h:inputText value="#{userBean.password}"/>
                 <p:commandButton value="Save and Go Back to Main Menu" update="msgs" action="#{userBean.modifyAUser()}" />
             </h:panelGrid>
         </h:form>

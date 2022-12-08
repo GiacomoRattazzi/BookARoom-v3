@@ -94,6 +94,7 @@ public class UserBean implements Serializable {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmail(email);
+                user.setPassword(password.hashCode());
                 em.merge(user);
                 return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
             }
