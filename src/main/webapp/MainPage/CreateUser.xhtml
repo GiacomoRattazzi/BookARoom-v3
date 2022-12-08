@@ -27,14 +27,14 @@
                 <h:inputSecret value="#{userBean.password}" />
                 <h:outputText value="Credit card number (must be 16 digits)"/>
                 <p:inputMask id="ccnumber" value="#{userBean.ccnumber}" mask="9999-9999-9999-9999" validateMask="true" required="true" requiredMessage="The Credit Card Number should have 16 digits!"/> 
-                <p:growl id="growl" showDetail="false" life="3000"/>
                 <h:outputText value="Credit card code (must be 3 digits)"/>
                 <p:inputMask id="cccode" value="#{userBean.cccode}" mask="999" validateMask="true" required="true" requiredMessage="The Credit Card code should have 3 digits!"/> 
                 <h:outputText value="Credit card expiration date"/>
+                
                 <h:panelGrid columns="2" cellpadding="5">
                     <p:datePicker id="month" view="month" value="#{userBean.ccexpirationdate}" pattern="MM/yy" yearNavigator="true" yearRange="#{roomBean.today}:2030" mindate="#{roomBean.today}" />
                 </h:panelGrid>
-                
+                <p:growl id="growl" showDetail="false" life="3000"/>
                 <p:commandButton value="Create a User" 
                                  action="#{userBean.createAUser()}" update="report_criteria"/>
                 <h:commandButton value="Go Back to Main Menu" 
