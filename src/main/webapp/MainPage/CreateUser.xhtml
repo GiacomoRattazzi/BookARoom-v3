@@ -26,8 +26,7 @@
                 <h:outputText value="Password"/>
                 <h:inputSecret value="#{userBean.password}" />
                 <h:outputText value="Credit card number (must be 16 digits)"/>
-                <p:inputMask id="ccnumber" value="#{userBean.ccnumber}" mask="9999-9999-9999-9999" validateMask="true" required="true" requiredMessage="The Credit Card Number should have 16 digits!"/>
-                <p:messages for="ccnumber"/>    
+                <p:inputMask id="ccnumber" value="#{userBean.ccnumber}" mask="9999-9999-9999-9999" validateMask="true" required="true" requiredMessage="The Credit Card Number should have 16 digits!"/> 
                 <p:growl id="growl" showDetail="false" life="3000"/>
                 <h:outputText value="Credit card code (must be 3 digits)"/>
                 <p:inputMask id="cccode" value="#{userBean.cccode}" mask="999" validateMask="true" required="true" requiredMessage="The Credit Card code should have 3 digits!"/> 
