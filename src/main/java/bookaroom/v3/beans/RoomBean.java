@@ -67,6 +67,7 @@ public class RoomBean implements Serializable {
         return n;   
     }
     
+    
     private Rooms findRoomByNameInTheHotel(String roomName) throws DoesNotExistException {
         Query query = em.createNamedQuery("Rooms.findByRoomName");
         List<Rooms> rooms = query.setParameter("roomName", roomName).getResultList(); {

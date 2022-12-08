@@ -40,8 +40,8 @@ public class UserBean implements Serializable {
     private String lastName = "";
     private String email = "";
     private String password = "";
-    private int ccnumber;
-    private int cccode;
+    private String ccnumber = "";
+    private String cccode = "";
     private Date ccexpirationdate = new Date(System.currentTimeMillis());
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
     private final YearMonth CurrentTime = YearMonth.now();
@@ -58,8 +58,10 @@ public class UserBean implements Serializable {
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
                 newUser.setPassword(password.hashCode());
-                newUser.setCcnumber(Integer.toString(ccnumber));
-                newUser.setCccode(Integer.toString(cccode));
+                ///String ccnumberString = Integer.toString(ccnumber);
+                newUser.setCcnumber(ccnumber);
+                //String cccodeString = (cccode);
+                newUser.setCccode(cccode);
                 newUser.setCcexpirationdate(ccexpirationdate);
                 em.persist(newUser);
                 
@@ -108,11 +110,11 @@ public class UserBean implements Serializable {
         return password;
     }
         
-    public int getCcnumber() {
+    public String getCcnumber() {
         return ccnumber;
     }
     
-    public int getCccode() {
+    public String getCccode() {
         return cccode;
     }
     
@@ -155,13 +157,15 @@ public class UserBean implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println(username);
     }
     
-    public void setCcnumber(int nccnumber) {
+    public void setCcnumber(String nccnumber) {
          this.ccnumber = nccnumber;
+         System.out.println(ccnumber);
     }
     
-    public void setCccode(int ncccode) {
+    public void setCccode(String ncccode) {
          this.cccode = ncccode;
     }
     

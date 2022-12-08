@@ -155,6 +155,8 @@ public class Users implements Serializable {
 
     public void setCccode(String cccode) {
         this.cccode = cccode;
+        System.out.println(cccode);
+        
     }
 
     public Date getCcexpirationdate() {

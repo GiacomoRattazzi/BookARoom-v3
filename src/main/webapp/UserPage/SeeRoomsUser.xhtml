@@ -3,23 +3,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-     <style>
-            .room-type{
-                font-size: 14px;
-                font-weight: bold;
-            }
-            .room-description{
-                font-size: 12px;
-            }
-            .book-button{
-                background-color: #FF2272; 
-                color: white;
-                border-radius: 5px;
-                width: 150px;
-            }
-        </style>
+
     <h:head>
         <title>Hotel Rooms</title>
+        <style>
+            .cheap {
+            background-color: #6699cc !important;
+            color: #ffffff !important;
+            }
+        </style>
     </h:head>
     <h:body style="background-color: black">
         <h:form>
@@ -30,7 +22,7 @@
             
             <p:dataTable var="room" value="#{roomBean.rooms}" paginator="true" rows="5"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" style="margin-top:10px">
+                         rowsPerPageTemplate="5,10,15" rowStyleClass="cheap" style="margin-top:20px">
                 
                 <p:column>
                     <f:facet name="header">
