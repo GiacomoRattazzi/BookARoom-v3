@@ -2,20 +2,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>BookARoom</title>
+        <style>
+            h1 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 3px red; 
+                text-shadow: red 5px 0 1px;
+                font-size: 70px; 
+                font-weight: bold; 
+                text-align: center;
+            }
+            h2 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 2px red; 
+                font-size: 40px; 
+                font-weight: bold; 
+                text-align: center;
+                margin-top: 5%;
+            }
+            .reviewWrapper {
+                padding: 15px 25px;
+                margin-bottom: 10px;
+                border: 1px solid #a8a8a8;
+                border-radius: 5px;
+                background-color: #fcfcfc;
+            }    
+        </style>
     </h:head>
-    <h:body>
+    <h:body style="background-color: black">
+        <h1>BookARoom</h1>
+        <h2>Room(s) booked</h2>
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Booked Rooms" style="font-size: 30px" />
-                <br/>
+            <h:panelGrid columns="2" style="margin: auto">
+                <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+                <p:commandButton value="Go Back to Book a Room" action="/UserPage/SeeRoomsUser.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="margin:auto" >
+                
                 <ui:repeat value="#{loginBean.currentUser.reservationsList}" var="item">
-                    <h:outputText value="-----" />
-                    <h:panelGrid columns="2">
-                        <h:outputText value="Reservation number:" />
-                        <h:outputText value="#{item.reservationNumber}" />
+                    <div class="reviewWrapper">
+                        <h:panelGrid columns="2">
+                        <h:outputText value="Reservation number:" style="font-weight: bold" />
+                        <h:outputText value="#{item.reservationNumber}" style="font-weight: bold" />
                         <h:outputText value="Room name:" />
                         <h:outputText value="#{item.roomName}" />
                         <h:outputText value="Total Price:" />
@@ -25,16 +66,31 @@
                         <h:outputText value="Date of departure:" />
                         <h:outputText value="#{item.dateDeparture}" />
                     </h:panelGrid>
-                    <h:outputText value="-----" />
+                    </div>
                 </ui:repeat>
-                <br/>
-                <h:outputText value="Reservation number: "/>
-                <h:inputText value="#{roomBean.resNbr}" />
-                <br/>
-                <h:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"/> 
-                <br/>
-                <h:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
             </h:panelGrid>
+            <br/>
+            
+            <br/>
+            <h:panelGrid columns="2" style="margin: auto">
+                <h:outputText value="Reservation number: " style="font-family: 'Helvetica'; 
+                color: white; font-size: x-large; font-weight: bold; text-align: center;"/>
+                <h:inputText value="#{roomBean.resNbr}" size="1" style="height:40px; text-align: center; font-size: x-large"/>
+                <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+                <p:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
+            <h:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"/> 
+            <br/>
+            <h:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+
         </h:form>
     </h:body>
 </html>

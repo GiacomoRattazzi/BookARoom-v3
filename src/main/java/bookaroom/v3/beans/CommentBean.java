@@ -1,4 +1,3 @@
-
 package bookaroom.v3.beans;
 import bookaroom.v3.exceptions.AlreadyExistsException;
 import bookaroom.v3.exceptions.DoesNotExistException;

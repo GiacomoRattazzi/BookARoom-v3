@@ -6,37 +6,106 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>BookARoom</title>
+        <style>
+            h1 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 3px red; 
+                text-shadow: red 5px 0 1px;
+                font-size: 70px; 
+                font-weight: bold; 
+                text-align: center;
+            }
+            h2 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 2px red; 
+                font-size: 40px; 
+                font-weight: bold; 
+                text-align: center;
+                margin-top: 5%;
+            }
+            .reviewWrapper {
+                padding: 15px 25px;
+                margin-bottom: 10px;
+                border: 1px solid #a8a8a8;
+                border-radius: 5px;
+                background-color: #fcfcfc;
+            }
+            .reviewWrapper h3 {
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            .ratingWrapper {
+                margin-top: 10px;
+                margin-bottom: 15px;
+            }
+        </style>
     </h:head>
-    <h:body>
+    <h:body style="background-color: black">
+        <h1>BookARoom</h1>
         <h:form>
-            <h:outputText value="Rooms in the Hotel" style="font-size: 30px"/>
-            <br/><br></br>
-            <h:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"/>
-            <h:commandButton value="Sign in" action="LoginPage.xhtml?faces-redirect=true"/>
-            <br/><br></br>
-            <p:carousel value="#{roomBean.rooms}" var="room" numVisible="5"  widgetVar="ondemand" >
-                 <p:panel header="#{room.roomName}" >
-                        <h:panelGrid columns="1" cellpadding="10">
-                        <p:graphicImage name="/images/#{room.roomType}"/> 
-                        <img src="../images/#{room.roomType}.jpeg" width="500" alt="Picture :#{room.roomType}"/>
-                        <h:outputText value="#{room.roomName}"/> 
-                        <h:outputText value="The Price per night : #{room.roomPrice} CHF"/>
-                        <h:outputText value="The Description : #{room.description}" />
-                 </h:panelGrid>
-             </p:panel>
-             </p:carousel>
+            <h:panelGrid columns="3" style=" margin: auto">
+                <p:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+
+                <p:commandButton value="Sign in" action="/MainPage/LoginPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+
+                 <p:commandButton value="Register" action="/MainPage/CreateUser.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
             <br></br>
-            <h:outputText value="Reviews" style="font-size: 30px"/>
-                <br/>
-                <ui:repeat value="#{commentBean.comments}" var="item">
-                    <h:outputText value="-----" />
-                    <h:panelGrid columns="2">
-                        <h:outputText value="#{item.comment}" />
-                        <p:rating value="#{item.rating}" readonly="true" />
-                    </h:panelGrid>
-                    <h:outputText value="-----" />
-                </ui:repeat>
-                <br/>    
+            <p:galleria value="#{roomBean.rooms}" var="room" panelWidth="800" panelHeight="520" 
+                        style='margin: auto'  showFilmstrip="true" showCaption="true">
+                <img src="../images/#{room.roomType}.jpeg" title="#{room.roomName}"  
+                     alt="It's a #{room.roomType}  and  the price is #{room.roomPrice}CHF." 
+                     style="width: 100%" />
+            </p:galleria>
+            <br></br>
+            <h2>Reviews</h2>
+                <h:panelGrid columns="2" style="margin:auto">
+                    <ui:repeat value="#{commentBean.comments}" var="item">
+                        <div class="reviewWrapper">
+                            <h:panelGrid columns="2">
+                                <h3><h:outputText value="#{item.comment}" style="font-weight:bold" /></h3>
+                                <div class="ratingWrapper">
+                                    <p:rating value="#{item.rating}" readonly="true" stars="5" cancel="false" style="margin-bottom: 15px;" />
+                                </div>
+                            </h:panelGrid>
+                        </div>
+                    </ui:repeat>
+                    <br/>
+                </h:panelGrid>
+            
+            <h:panelGrid columns="3" style=" margin: auto">
+                <p:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+
+                <p:commandButton value="Sign in" action="/MainPage/LoginPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+
+                 <p:commandButton value="Register" action="/MainPage/CreateUser.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
         </h:form>
     </h:body>
 </html>
