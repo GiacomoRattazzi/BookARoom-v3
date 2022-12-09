@@ -82,22 +82,5 @@
                                      icon="pi pi-check" iconPos="right" />
             </p:dialog>
         </h:form>
-        &lt;script type="text/javascript"&gt;
-        function highlightDates(){
-            //Ajax call to get occupied dates from the Database 
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if(this.readyState == 4 &amp;&amp; this.status == 200) {
-                    var dates = JSON.parse(xhttp.responseText); // parse the ajax response 
-                    for (let date of dates) {
-                        date = new Date(date);  //convert string date to Date object
-                        $("#range").datepicker("setDate", date).datepicker("widget").addClass('datepickerHighlight');
-                    }
-                }
-            };
-            xhttp.open("GET", "/roomBean.getBookedDates", true);
-            xhttp.send();
-        }
-        &lt;/script&gt;
     </h:body>
 </html>

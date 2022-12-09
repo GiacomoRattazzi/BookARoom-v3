@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bookaroom.v3.models;
 
 import java.io.Serializable;
@@ -19,9 +14,9 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author Giac
+ * @author Team BookARoom
  */
+
 @Entity
 @Table(name = "comments")
 @XmlRootElement

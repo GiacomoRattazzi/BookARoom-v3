@@ -1,6 +1,4 @@
 package bookaroom.v3.beans;
-import bookaroom.v3.exceptions.AlreadyExistsException;
-import bookaroom.v3.exceptions.DoesNotExistException;
 import bookaroom.v3.models.Users;
 import bookaroom.v3.models.Comments;
 import javax.inject.Named;
@@ -15,9 +13,9 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 /**
- *
- * @author Giac
+ * @author Team BookARoom
  */
+
 @Named(value = "commentBean")
 @SessionScoped
 public class CommentBean implements Serializable {
@@ -61,12 +59,6 @@ public class CommentBean implements Serializable {
         this.rating = 0;
 
     }   
-//    public void addCommentFromUser() {
-//        User user = LoginBean.getUserLoggedIn();
-//        MockDatabase.getInstance().addAComment(new Comment(user.getUsername()+": "+comment+" ("+getTodayDate().format(formatterComment)+")",rating));
-//        
-//
-//    }
     
     public Integer getRating(){
         return rating;

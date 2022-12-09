@@ -15,11 +15,6 @@ import java.util.stream.IntStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.HashMap;
-import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -31,6 +26,7 @@ import org.primefaces.PrimeFaces;
 /*
  * @author Team BookARoom
  */
+
 @Named(value = "roomBean")
 @SessionScoped
 
@@ -45,7 +41,6 @@ public class RoomBean implements Serializable {
     private List<LocalDate> betweenRange;
     private LocalDate test1;
     private Boolean roomEmpty = true;
-    private String temp1;
     private String temp2;
     
     private int resNbr = 0;
@@ -67,19 +62,7 @@ public class RoomBean implements Serializable {
             n.add(dates.get(i).getRoomDate()); 
         }
         return n;   
-    }
-    
-    public Map<Date, String> getBookedDatesTest() {
-        Query query = em.createNamedQuery("Dates.findByRoomName");
-        List<Dates> dates = query.setParameter("roomName", roomName).getResultList();
-        Map<Date, String> n = new HashMap<>();
-        for (Dates date : dates)  {
-            Date dateObject  = Date.valueOf(date.getRoomDate()); // Convert the string to a Date object
-            n.put(dateObject, "occupiedCalendarDate");
-        }
-        return n;   
-    }
-     
+    }     
     
     private Rooms findRoomByNameInTheHotel(String roomName) throws DoesNotExistException {
         Query query = em.createNamedQuery("Rooms.findByRoomName");
@@ -328,13 +311,6 @@ public class RoomBean implements Serializable {
         }
     }
       
-     
-
-
-    
-    
-
-    
     
     public int getResNbr(){
         return RemoveResNbr;
@@ -352,15 +328,6 @@ public class RoomBean implements Serializable {
         DelRoomName = delR;
     }
     
-    public void removeDatesBooked() {
-        //todo
-    }
-    
-    
-    public void removeRoomFromBooking() {
-        //todo
-        // empty values
-        this.RemoveResNbr = 0;
-    }
+
     
 }

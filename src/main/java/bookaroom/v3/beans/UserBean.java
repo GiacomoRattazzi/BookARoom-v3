@@ -1,10 +1,8 @@
-
 package bookaroom.v3.beans;
 
 import bookaroom.v3.exceptions.AlreadyExistsException;
 import bookaroom.v3.exceptions.DoesNotExistException;
-import bookaroom.v3.exceptions.InvalidCreditCardException;
-import bookaroom.v3.exceptions.InvalidCreditCardDateException;
+
 import bookaroom.v3.models.Users;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -12,12 +10,8 @@ import java.time.format.DateTimeFormatter;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -60,9 +54,7 @@ public class UserBean implements Serializable {
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
                 newUser.setPassword(password.hashCode());
-                ///String ccnumberString = Integer.toString(ccnumber);
                 newUser.setCcnumber(ccnumber);
-                //String cccodeString = (cccode);
                 newUser.setCccode(cccode);
                 newUser.setCcexpirationdate(ccexpirationdate);
                 em.persist(newUser);
@@ -206,21 +198,10 @@ public class UserBean implements Serializable {
     public void setCcexpirationdate(Date nccexpirationdate) {
         this.ccexpirationdate = nccexpirationdate;
     } 
-    /*TO FIX
-    @Transactional
-    public void completeBooking() {
-        Users user = LoginBean.getUserLoggedIn();
-        try {
-            LoginBean.getUserLoggedIn().completeBooking();
-        } catch (InvalidCreditCardDateException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
+
 
 }
-*/
-}
-    
+
+
     
 
