@@ -45,19 +45,19 @@
                                  onmouseout="this.style.background='black';this.style.color='white';" />
             </h:panelGrid>
             <br></br><br></br>
-            <h:panelGrid columns="2"  style="margin:auto; color: white; 
+            <h:panelGrid columns="2"  style="margin: auto 25%; color: white;
                          font-family:'Helvetica'; text-align: match-parent; font-size: x-large;
-                         font-weight: bold; line-height: 20px" cellpadding="10" cellspacing="20">
+                         font-weight: bold; column-width: 500px" cellpadding="10" cellspacing="20">
                 
-                <p:outputLabel for="range" value="Pick the dates of your stay:" style="text-align: center; font-size: x-large"/>
-                <p:datePicker id="range" selectionMode="range" value="#{roomBean.range}" 
+                <p:outputLabel for="range" value="Pick the dates " style="text-align: center; font-size: x-large"/>
+                <p:datePicker id="range" selectionMode="range" value="#{roomBean.range}"  size="20"
                               readonlyInput="true" showIcon="true" mindate="#{roomBean.today}" 
                               inputStyle="text-align: center; font-size: large" />
 
                 <h:outputText value="You are booking "/>
                 <h:outputText value="#{roomBean.roomName}"/>
                 <h:outputText value="This room is not available at the following dates :"/>
-                <h:outputText value=" "/>
+                
                 <h:outputText value="#{roomBean.bookedDates}"/>
             </h:panelGrid>
             <br></br><br></br>
@@ -84,7 +84,7 @@
                 </p:panelGrid>
                 <p:commandButton value="See the rooms that you booked" action="/UserPage/SeeBooking.xhtml?faces-redirect=true" 
                                      style="background-color: black;color: white; border-color: #FF2272; border-width: 5px;
-                                     width: 350px; height: 60px; margin: auto 40%; font-size: large; font-weight: bold"
+                                      margin: auto; font-size: large; font-weight: bold; size: auto"
                                      onmouseover="this.style.background='#FF2272';this.style.color='white';" 
                                      onmouseout="this.style.background='black';this.style.color='white';" 
                                      icon="pi pi-check" iconPos="right" />

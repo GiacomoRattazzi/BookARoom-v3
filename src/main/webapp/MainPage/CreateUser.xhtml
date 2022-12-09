@@ -30,21 +30,15 @@
     </h:head>
     <h:body style="background-color: black">
         <h1>BookARoom</h1>
-        <h:form id="form">
-            <h:panelGrid columns="3" style=" margin: auto">
-                <p:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"
+        <h:form>
+            <h:panelGrid columns="2" style=" margin: auto">
+               <p:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"
                                  style="background-color: black;color: white;
                                  border-color: #FF2272; border-width: 5px"
                                  onmouseover="this.style.background='#FF2272';this.style.color='white';" 
                                  onmouseout="this.style.background='black';this.style.color='white';" />
 
                 <p:commandButton value="Sign in" action="/MainPage/LoginPage.xhtml?faces-redirect=true"
-                                 style="background-color: black;color: white;
-                                 border-color: #FF2272; border-width: 5px"
-                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
-                                 onmouseout="this.style.background='black';this.style.color='white';" />
-
-                 <p:commandButton value="Register" action="/MainPage/CreateUser.xhtml?faces-redirect=true"
                                  style="background-color: black;color: white;
                                  border-color: #FF2272; border-width: 5px"
                                  onmouseover="this.style.background='#FF2272';this.style.color='white';" 

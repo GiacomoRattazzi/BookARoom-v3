@@ -75,22 +75,13 @@
             <h:panelGrid columns="2" style="margin: auto">
                 <h:outputText value="Reservation number: " style="font-family: 'Helvetica'; 
                 color: white; font-size: x-large; font-weight: bold; text-align: center;"/>
-                <h:inputText value="#{roomBean.resNbr}" size="1" style="height:40px; text-align: center; font-size: x-large"/>
-                <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
-                                 style="background-color: black;color: white;
-                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                <h:inputText value="#{roomBean.resNbr}" size="1" style="height:40px; text-align: center; font-size: x-large"/>   
+            </h:panelGrid>          
+                <h:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"
+                                 style="background-color: black;color: white; width: 300px ; height: 50px;
+                                 border-color: #FF2272; border-width: 5px; margin: auto 39.5%; font-size: x-large "
                                  onmouseover="this.style.background='#FF2272';this.style.color='white';" 
                                  onmouseout="this.style.background='black';this.style.color='white';" />
-                <p:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"
-                                 style="background-color: black;color: white;
-                                 border-color: #FF2272; border-width: 5px; margin: auto;"
-                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
-                                 onmouseout="this.style.background='black';this.style.color='white';" />
-            </h:panelGrid>
-            <h:commandButton value="Remove reservation" action="#{roomBean.removeRoomFromReservations}"/> 
-            <br/>
-            <h:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
-
         </h:form>
     </h:body>
 </html>
