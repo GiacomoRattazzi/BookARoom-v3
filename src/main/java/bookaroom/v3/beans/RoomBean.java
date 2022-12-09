@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.HashMap;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -67,6 +69,17 @@ public class RoomBean implements Serializable {
         return n;   
     }
     
+    public Map<Date, String> getBookedDatesTest() {
+        Query query = em.createNamedQuery("Dates.findByRoomName");
+        List<Dates> dates = query.setParameter("roomName", roomName).getResultList();
+        Map<Date, String> n = new HashMap<>();
+        for (Dates date : dates)  {
+            Date dateObject  = Date.valueOf(date.getRoomDate()); // Convert the string to a Date object
+            n.put(dateObject, "occupiedCalendarDate");
+        }
+        return n;   
+    }
+     
     
     private Rooms findRoomByNameInTheHotel(String roomName) throws DoesNotExistException {
         Query query = em.createNamedQuery("Rooms.findByRoomName");
@@ -201,7 +214,7 @@ public class RoomBean implements Serializable {
     private int getLatestResNumber() {
         Query query = em.createNamedQuery("Reservations.findAll");
         List<Reservations> reservations = query.getResultList();
-        return reservations.get(reservations.size() - 1).getReservationNumber();
+        return reservations.size();
 }       
     
     //add reservation to the database

@@ -43,7 +43,8 @@
                 <p:outputLabel for="range" value="Pick the dates " style="text-align: center; font-size: x-large"/>
                 <p:datePicker id="range" selectionMode="range" value="#{roomBean.range}"  size="20"
                               readonlyInput="true" showIcon="true" mindate="#{roomBean.today}" 
-                              inputStyle="text-align: center; font-size: large" />
+                              inputStyle="text-align: center; font-size: large"
+                              />
 
                 <h:outputText value="You are booking "/>
                 <h:outputText value="#{roomBean.roomName}"/>
@@ -81,5 +82,22 @@
                                      icon="pi pi-check" iconPos="right" />
             </p:dialog>
         </h:form>
+        &lt;script type="text/javascript"&gt;
+        function highlightDates(){
+            //Ajax call to get occupied dates from the Database 
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 &amp;&amp; this.status == 200) {
+                    var dates = JSON.parse(xhttp.responseText); // parse the ajax response 
+                    for (let date of dates) {
+                        date = new Date(date);  //convert string date to Date object
+                        $("#range").datepicker("setDate", date).datepicker("widget").addClass('datepickerHighlight');
+                    }
+                }
+            };
+            xhttp.open("GET", "/roomBean.getBookedDates", true);
+            xhttp.send();
+        }
+        &lt;/script&gt;
     </h:body>
 </html>
