@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bookaroom.v3.models;
 
 import java.io.Serializable;
@@ -30,8 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rooms.findByRoomId", query = "SELECT r FROM Rooms r WHERE r.roomId = :roomId"),
     @NamedQuery(name = "Rooms.findByRoomName", query = "SELECT r FROM Rooms r WHERE r.roomName = :roomName"),
     @NamedQuery(name = "Rooms.findByRoomPrice", query = "SELECT r FROM Rooms r WHERE r.roomPrice = :roomPrice"),
-    @NamedQuery(name = "Rooms.findByDescription", query = "SELECT r FROM Rooms r WHERE r.description = :description"),
-    @NamedQuery(name = "Rooms.findByRoomType", query = "SELECT r FROM Rooms r WHERE r.roomType = :roomType")})
+    @NamedQuery(name = "Rooms.findByRoomType", query = "SELECT r FROM Rooms r WHERE r.roomType = :roomType"),
+    @NamedQuery(name = "Rooms.findByDescription", query = "SELECT r FROM Rooms r WHERE r.description = :description")})
 public class Rooms implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,12 +41,12 @@ public class Rooms implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ROOM_PRICE")
     private Double roomPrice;
-    @Size(max = 255)
-    @Column(name = "DESCRIPTION")
-    private String description;
     @Size(max = 50)
     @Column(name = "ROOM_TYPE")
     private String roomType;
+    @Size(max = 255)
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     public Rooms() {
     }
@@ -84,6 +79,14 @@ public class Rooms implements Serializable {
         this.roomPrice = roomPrice;
     }
 
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -92,14 +95,6 @@ public class Rooms implements Serializable {
         this.description = description;
     }
 
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;

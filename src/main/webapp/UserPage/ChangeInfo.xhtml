@@ -1,23 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>BookARoom</title>
+        <style>
+            h1 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 3px red; 
+                text-shadow: red 5px 0 1px;
+                font-size: 70px; 
+                font-weight: bold; 
+                text-align: center;
+            }
+            h2 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 2px red; 
+                font-size: 50px; 
+                font-weight: bold; 
+                text-align: center;
+                margin-top: 5%;
+            }
+        </style>
     </h:head>
-    <h:body>
+    <h:body style="background-color: black">
+        <h1>BookARoom</h1>
+        <h2>Change your informations</h2>
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="New username:"/>
-                <h:inputText value="#{loginBean.currentUser.username}"/>
-                <h:outputText value="New first name:"/>
-                <h:inputText value="#{loginBean.currentUser.firstName}"/>
-                <h:outputText value="New last name"/>
-                <h:inputText value="#{loginBean.currentUser.lastName}"/>
-                <h:outputText value="New email"/>
-                <h:inputText value="#{loginBean.currentUser.email}"/>
-                <h:commandButton value="Save and Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+            <h:panelGrid columns="2" style="margin: auto">
+                <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
+                <p:commandButton value="Go Back to User Infos" action="/UserPage/ShowInfo.xhtml?faces-redirect=true"
+                                 style="background-color: black;color: white;
+                                 border-color: #FF2272; border-width: 5px; margin: auto;"
+                                 onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                 onmouseout="this.style.background='black';this.style.color='white';" />
             </h:panelGrid>
+            <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+            <h:panelGrid columns="2" style="margin:auto; color: white; 
+                         font-family:'Helvetica'; text-align: right; font-size: x-large;
+                         font-weight: bold; line-height: 20px" cellpadding="10" cellspacing="20">
+                <h:outputText value="New username"/>
+                <h:inputText value="#{userBean.username}" size="30" style="height:40px; text-align: center; font-size: large"/>
+                <h:outputText value="New first name"/>
+                <h:inputText value="#{userBean.firstName}" size="30" style="height:40px; text-align: center; font-size: large"/>
+                <h:outputText value="New last name"/>
+                <h:inputText value="#{userBean.lastName}" size="30" style="height:40px; text-align: center; font-size: large"/>
+                <h:outputText value="New email"/>
+                <h:inputText value="#{userBean.email}" size="30" style="height:40px; text-align: center; font-size: large"/>
+                <h:outputText value="New password"/>
+                <h:inputSecret value="#{userBean.password}" size="30" style="height:40px; text-align: center; font-size: large"/>
+            </h:panelGrid>
+            <p:commandButton value="Save and Go Back to Main Menu" update="msgs" action="#{userBean.modifyAUser()}"
+                             style="background-color: black;color: white; border-color: #FF2272; border-width: 5px;
+                             width: 350px; height: 60px; margin: auto 40%; font-size: large; font-weight: bold"
+                             onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                             onmouseout="this.style.background='black';this.style.color='white';" />
         </h:form>
     </h:body>
 </html>

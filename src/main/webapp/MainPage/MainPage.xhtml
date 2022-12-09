@@ -4,52 +4,79 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     
-    <!--
-    <style>
-    button.ui-button {
-        margin-right: .5rem;
-    } 
-    
-    </style>
-    -->
-    
-    <style>
-    #demo {
-      /* (A1) ALL WE NEED : CSS TRANSITION */
-      transition: background-color 1s;
-
-      /* (A2) COSMETICS */
-      width: 100%;
-      height: 100px;
-      background-color: #eee;
-    }
-
-    /* (A3) BACKGROUND COLOR CHANGE */
-    #demo.swap { background-color: #e00; }
-    </style>
-    
     <h:head>
         <title>BookARoom Hotel</title>
-        
+        <style>
+            h1 {
+                font-family: 'Helvetica', cursive; 
+                color: white; 
+                -webkit-text-stroke: 3px red; 
+                text-shadow: red 5px 0 1px;
+                font-size: 70px; 
+                font-weight: bold; 
+                text-align: center;
+            }
+            h3 {
+                font-family: 'Helvetica', cursive;
+                font-size: 35px;
+                text-align: center;
+                animation: headlineAnimation 1.5s ease;
+                animation-iteration-count: 20;
+                 
+            }
+            body {
+                background-image: url(../images/main_image.jpg);
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                background-position: 100% 25%;
+            }
+            @keyframes headlineAnimation {
+    0% {
+        transform: translate(0px, 2px);
+        opacity: 0;
+    }
+    40% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    60% {
+        color: black;
+        -webkit-text-stroke: #FF2272;
+        text-shadow: #FF2272 5px 0 10px;
+        font-weight: bold;
+    }
+    100% {
+        color: black;
+        -webkit-text-stroke: #FF2272;
+        text-shadow: #FF2272;
+        font-weight: bold;
+    }
+}
+        </style>
     </h:head>
-    <h:body>
-        
-        <h:outputLabel style="font-size: 30px" value=""/>
-        <img src="../images/Logo.png" width="120" alt="Logo"/> 
-        <br/><br></br>
+    <h:body> 
+        <h1>BookARoom</h1>
+        <h3>One of the best hotels in town!</h3>
+        <div> 
         <h:form>
-            <h:panelGrid columns="6">
-            <br/>
-                <h:commandButton value="Sign in" action="LoginPage.xhtml?faces-redirect=true"/>
-            <br/>
-                <h:commandButton value="Register" action="CreateUser.xhtml?faces-redirect=true" />
-            <br/>    
-                <h:commandButton value="Rooms" action="SeeRooms.xhtml?faces-redirect=true" styleClass="ui-button-raised"/>
+        <h:panelGrid columns="3"  cellpadding="100%" style=" margin: auto">
+                <p:commandButton value="Sign in" action="/MainPage/LoginPage.xhtml?faces-redirect=true" 
+                                 style="background-color: black; color: white; border-color: #FF2272; border-width: 5px;
+                                        padding: 10px 40px; text-align: center; font-size: 30px; cursor: pointer;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';"/>
+                <p:commandButton value="Register" action="/MainPage/CreateUser.xhtml?faces-redirect=true" 
+                                 style="background-color: black; color: white; border-color: #FF2272; border-width: 5px;
+                                        padding: 10px 40px; text-align: center; font-size: 30px; cursor: pointer;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';"/> 
+                <p:commandButton value="Rooms" action="/MainPage/SeeRooms.xhtml?faces-redirect=true" styleClass="ui-button-raised"
+                                 style="background-color: black; color: white; border-color: #FF2272; border-width: 5px;
+                                        padding: 10px 40px; text-align: center; font-size: 30px; cursor: pointer;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';"/>
             </h:panelGrid>
         </h:form>
-        <br></br>
-        <img src="../images/Main.jpeg" width="900" alt="Hotel picture"/>
-      
-    </h:body>
-    
+        </div>
+    </h:body> 
 </html>

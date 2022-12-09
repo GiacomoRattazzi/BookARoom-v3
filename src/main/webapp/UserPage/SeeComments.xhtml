@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -6,30 +5,85 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>BookARoom</title>
+        <style>
+            h1 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 3px red; 
+                text-shadow: red 5px 0 1px;
+                font-size: 70px; 
+                font-weight: bold; 
+                text-align: center;
+            }
+            h2 {
+                font-family: 'Helvetica'; 
+                color: white; 
+                -webkit-text-stroke: 2px red; 
+                font-size: 40px; 
+                font-weight: bold; 
+                text-align: center;
+                margin-top: 5%;
+            }
+            .reviewWrapper {
+              padding: 15px 25px;
+              margin-bottom: 10px;
+              border: 1px solid #a8a8a8;
+              border-radius: 5px;
+              background-color: #fcfcfc;
+            }
+            .reviewWrapper h3 {
+              font-size: 1.2rem;
+              font-weight: bold;
+            }
+            .ratingWrapper {
+              margin-top: 10px;
+              margin-bottom: 15px;
+            }
+        </style>
     </h:head>
-    <h:body>
+    <h:body style="background-color: black">
+        <h1>BookARoom</h1>
+        <h2>Reviews</h2>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="2" style="margin: auto">
+                <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
+                                style="background-color: black;color: white;
+                                border-color: #FF2272; border-width: 5px; margin: auto;"
+                                onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                onmouseout="this.style.background='black';this.style.color='white';" />
+                <p:commandButton value="Go Back to User Infos" action="/UserPage/ShowInfo.xhtml?faces-redirect=true"
+                                style="background-color: black;color: white;
+                                border-color: #FF2272; border-width: 5px; margin: auto;"
+                                onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
+            <br/><br/>
+            <h:panelGrid columns="2" style="margin:auto; text-align: center">
+                 <h:inputText value="#{commentBean.comment}" size="70" style="height:60px; text-align: center; font-size: x-large"/>
+                 <div class="ratingWrapper">
+                     <p:rating value="#{commentBean.rating}" stars="5" cancel="false" />
+                 </div>
+                 <br> </br>
+                 <p:commandButton value="Add comment" action="#{commentBean.addCommentFromUser()}"
+                                style="background-color: black;color: white;
+                                border-color: #FF2272; border-width: 5px;"
+                                onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                onmouseout="this.style.background='black';this.style.color='white';" />
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="margin:auto" >    
                 <h:outputText value="Reviews" style="font-size: 30px"/>
                 <br/>
                 <ui:repeat value="#{commentBean.comments}" var="item">
-                    <h:outputText value="-----" />
-                    <h:panelGrid columns="2">
-                        <h:outputText value="#{item.comment}" />
-                        <p:rating value="#{item.rating}" readonly="true" />
-                    </h:panelGrid>
-                    <h:outputText value="-----" />
+                    <div class="reviewWrapper">
+                        <h:panelGrid columns="2">
+                            <h3><h:outputText value="#{item.comment}" style="font-weight:bold" /></h3>
+                            <div class="ratingWrapper">
+                                <p:rating value="#{item.rating}" readonly="true" stars="5" cancel="false" style="margin-bottom: 15px;" />
+                            </div>
+                        </h:panelGrid>
+                    </div>
                 </ui:repeat>
-                <br/>
-                <h:outputText value="New Comment:"/>
-                <h:inputText value="#{commentBean.comment}" />
-                <p:rating value="#{commentBean.rating}" />
-                <br/>
-                <h:commandButton value="Add comment" action="#{commentBean.addCommentFromUser()}"/>
-                <br/>
-                <h:commandButton value="Back" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
             </h:panelGrid>
         </h:form>
     </h:body>
 </html>
-

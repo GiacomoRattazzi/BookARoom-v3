@@ -7,35 +7,57 @@
         <title>BookARoom</title>
         <style type="text/css">
             body {
-                background-image: url(../images/Hotel_User.jpg);
+                background-image: url(../images/user_main.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+             
             }
             .UserPage {
                 width: 20%;
                 margin: 0 auto;
-                background: black;
+                background: transparent;
                 border-radius: 5px;
                 padding: 30px;
             }
         </style>
     </h:head>
     <h:body>
-        <h1 style="background-color: black; color: white; text-align: center; font-size: 60px">Book a Room</h1>
+         <h1 style="font-family: 'Helvetica'; color: white; -webkit-text-stroke: 3px red; text-shadow: red 5px 0 1px;
+            font-size: 70px; font-weight: bold; text-align: center;">BookARoom</h1>
         <div class="UserPage">
-            <h:outputLabel style="color: white; font-size: 50px" value="User Page"/>
             <h:form>
-                <h:panelGrid columns="1" cellpadding="10" style="text-align: center">
-                    <b></b>      
-                    <p:commandButton value="User Information" action="/UserPage/ShowInfo.xhtml?faces-redirect=true"  
-                                     style="background-color: #FF2272; color: white; border-color: #FF2272; font-size: 20px; padding: 10px;"/>
-                    <p:commandButton value="Book a Room" action="/UserPage/SeeRoomsUser.xhtml?faces-redirect=true"  
-                                     style="background-color: #FF2272; color: white; border-color: #FF2272; font-size: 20px; padding: 10px;"/>
-                    <p:commandButton value="Bookings" action="/UserPage/SeeBooking.xhtml?faces-redirect=true" 
-                                     style="background-color: #FF2272; color: white; border-color: #FF2272; font-size: 20px; padding: 10px;"/>
-                    <p:commandButton value="Hotel Reviews" action="/UserPage/SeeComments.xhtml?faces-redirect=true" 
-                                     style="background-color: #FF2272; color: white; border-color: #FF2272; font-size: 20px; padding: 10px;"/>
-                    <p:commandButton value="Log out" action="#{loginBean.userLogsout()}" 
-                                     style="background-color: #FF2272; color: white; border-color: #FF2272; font-size: 20px; padding: 10px;"/>
-                    <b></b>       
+                <h:panelGrid columns="1" cellpadding="10" style="text-align: center"> 
+                    <p:commandButton value="User Informations" action="/UserPage/ShowInfo.xhtml?faces-redirect=true"
+                                     style="background-color: black; color: white; 
+                                     border-color: #FF2272; border-width: 5px; 
+                                     font-size: 20px; padding: 10px;" 
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';" />
+                    <p:commandButton value="Book a Room" action="/UserPage/SeeRoomsUser.xhtml?faces-redirect=true"
+                                     style="background-color: black; color: white; 
+                                     border-color: #FF2272; border-width: 5px;
+                                     font-size: 20px; padding: 10px;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';" />
+                    <p:commandButton value="Room Booked" action="/UserPage/SeeBooking.xhtml?faces-redirect=true"
+                                     style="background-color: black; color: white; 
+                                     border-color: #FF2272; border-width: 5px;
+                                     font-size: 20px; padding: 10px;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';" />
+                    <p:commandButton value="Hotel Reviews" action="/UserPage/SeeComments.xhtml?faces-redirect=true"
+                                     style="background-color: black; color: white; 
+                                     border-color: #FF2272; border-width: 5px;
+                                     font-size: 20px; padding: 10px;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';" />
+                    <p:commandButton value="Log out" action="#{loginBean.userLogsout()}"
+                                     style="background-color: black; color: white; 
+                                     border-color: #FF2272; border-width: 5px;
+                                     font-size: 20px; padding: 10px;"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';" />     
             </h:panelGrid>  
             </h:form>
         </div>

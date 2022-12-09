@@ -4,19 +4,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>BookARoom</title>
+        <style type="text/css">
+            body {
+                background-image: url(../images/loginImage.jpg);
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                background-position: 100% 25%;
+                
+            }
+        </style>
     </h:head>
-    <h:body>
-        <h:outputLabel style="font-size: 30px" value="Sign in"/>
+    
+    <h:body style=" margin: 10%">
+        <h1 style="font-family: 'Helvetica'; color: white; -webkit-text-stroke: 3px red; text-shadow: red 5px 0 1px;
+            font-size: 70px; font-weight: bold; text-align: center;">Welcome to BookARoom</h1>
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Username"/>
-                <h:inputText value="#{loginBean.username}" />
-                <h:outputText value="Password"/>
-                <h:inputSecret value="#{loginBean.password}" />
+            <h:panelGrid columns="2" style=" margin: auto; max-width:700px; 
+                          margin-top: 10%; background-color: #f2f2f2; padding: 10px; border-radius: 10px;">
+                <h:outputText value="Username 📝" style="font-family: 'Helvetica';text-align: center; font-size: 25px;"/>
+                <h:inputText value="#{loginBean.username}" style="font-size: 25px;" />
+                <h:outputText value="Password 🔑" style="font-family: 'Helvetica';text-align: center; font-size: 25px;"/>
+                <h:inputSecret value="#{loginBean.password}" style="font-size: 25px;" />
                 <br/>
-                <h:commandButton value="Login" action="#{loginBean.userLogsIn()}"/>
+                <h:commandButton value="Login" action="#{loginBean.userLogsIn()}" style="font-size: 20px;cursor: pointer"/>
                 <br/>
-                <h:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true"/>
+                <h:commandButton value="Go Back to Main Menu" action="/MainPage/MainPage.xhtml?faces-redirect=true" style="font-size: 20px; cursor: pointer"/>
             </h:panelGrid>
         </h:form>
     </h:body>

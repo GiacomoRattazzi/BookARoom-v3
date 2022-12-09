@@ -67,6 +67,7 @@ public class RoomBean implements Serializable {
         return n;   
     }
     
+    
     private Rooms findRoomByNameInTheHotel(String roomName) throws DoesNotExistException {
         Query query = em.createNamedQuery("Rooms.findByRoomName");
         List<Rooms> rooms = query.setParameter("roomName", roomName).getResultList(); {
@@ -84,6 +85,11 @@ public class RoomBean implements Serializable {
   
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+    
+    public String setRoomNameAndRedirect(String roomName) {
+        this.roomName = roomName;
+        return "/UserPage/Booking.xhtml?faces-redirect=true";
     }
     
     public void click() {
@@ -104,7 +110,12 @@ public class RoomBean implements Serializable {
     }
     
     public LocalDate getToday() {
-        return LocalDate.now();
+        return LocalDate.now(); 
+    }
+    
+    public LocalDate getNextMonth() {
+        LocalDate today = LocalDate.now();
+        return today.plusMonths(1).withDayOfMonth(1);
     }
     
     public List<LocalDate> getDatesBetween() { 

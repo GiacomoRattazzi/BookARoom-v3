@@ -8,10 +8,13 @@
     </h:head>
     <h:body style="background-color: black">
         <h:form>
-            <h1 style="background-color: black; color: white; text-align: center; font-size: 60px">Book a Room</h1>
+            <h1 style="background-color: black; color: white; text-align: center; font-size: 60px">BookARoom</h1>
             
-            <p:commandButton value="Go Back to Main Menu" style="background-color: #FF2272; border-color: #FF2272; color: white; margin-left: 45%" 
-                             action="/UserPage/UserMainPage.xhtml?faces-redirect=true"/>
+            <p:commandButton value="Go Back to Main Menu" action="/UserPage/UserMainPage.xhtml?faces-redirect=true"
+                             style="background-color: black;color: white;
+                             border-color: #FF2272; border-width: 5px; margin-left: 45%"
+                             onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                             onmouseout="this.style.background='black';this.style.color='white';" />
             
             <p:dataTable var="room" value="#{roomBean.rooms}" paginator="true" rows="5"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -53,10 +56,13 @@
                     <f:facet name="header">
                         Book
                     </f:facet>
-                    <p:commandButton value="Book Now!" style="background-color:#FF2272; color: white;
-                                     border-color: #FF2272; border-radius: 5px; width: 150px;" 
+                    <p:commandButton value="Book Now!" 
                                      action="#{roomBean.setRoomName(room.roomName)}" 
-                                     oncomplete="window.location='/BookARoom-v3-master/faces/UserPage/Booking.xhtml'"/>
+                                     oncomplete="window.location='/BookARoom-v3-master/faces/UserPage/Booking.xhtml'"
+                                     onmouseover="this.style.background='#FF2272';this.style.color='white';" 
+                                     onmouseout="this.style.background='black';this.style.color='white';"
+                                     style="background-color: black; color: white;
+                                     border-color: #FF2272; border-width: 5px; width: 150px;"/>
                 </p:column>
             </p:dataTable>
         </h:form>

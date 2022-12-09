@@ -1,4 +1,3 @@
-
 package bookaroom.v3.beans;
 
 import bookaroom.v3.exceptions.AlreadyExistsException;
@@ -18,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -58,7 +59,9 @@ public class UserBean implements Serializable {
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
                 newUser.setPassword(password.hashCode());
+                ///String ccnumberString = Integer.toString(ccnumber);
                 newUser.setCcnumber(ccnumber);
+                //String cccodeString = (cccode);
                 newUser.setCccode(cccode);
                 newUser.setCcexpirationdate(ccexpirationdate);
                 em.persist(newUser);
@@ -73,8 +76,40 @@ public class UserBean implements Serializable {
         this.firstName = "";
         this.lastName = "";
         this.password = "";
-    }   
+    }       
+    
+    @Transactional
+    public String modifyAUser() {
+        try {
+            if (usernameExists() == true) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This username is not available: " + username));
+            }
+            if (emailExists() == true) {
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "This email is already in use: " + email));
+            }
+            if (!emailExists() && !usernameExists()) {
+                Users user = LoginBean.getUserLoggedIn();
+                user.setUsername(username);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setPassword(password.hashCode());
+                em.merge(user);
+                return "/UserPage/ShowInfo.xhtml?faces-redirect=true";
+            }
 
+        } catch (AlreadyExistsException | DoesNotExistException ex ) {
+            System.out.println(ex.getMessage());
+        }
+        // empty values
+        this.email = "";
+        this.username = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.password = "";
+        return "";
+    }
+    
     private boolean emailExists() throws AlreadyExistsException {
         Query query = em.createNamedQuery("Users.findByEmail");
         List<Users> users = query.setParameter("email", email).getResultList();
@@ -155,10 +190,12 @@ public class UserBean implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println(username);
     }
     
     public void setCcnumber(String nccnumber) {
          this.ccnumber = nccnumber;
+         System.out.println(ccnumber);
     }
     
     public void setCccode(String ncccode) {
@@ -179,10 +216,6 @@ public class UserBean implements Serializable {
         }
     }
     
-
 }
 */
 }
-    
-    
-
