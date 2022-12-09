@@ -108,7 +108,7 @@ public class UserBean implements Serializable {
         this.firstName = "";
         this.lastName = "";
         this.password = "";
-        return "/UserPage/UserMainPage.xhtml?faces-redirect=true";
+        return "";
     }
     
     private boolean emailExists() throws AlreadyExistsException {
